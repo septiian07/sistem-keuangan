@@ -82,7 +82,10 @@
     font-size: 1rem;
   }
   .dropdown-menu.show{
-    width: calc(var(--nav-width) + 236px);
+    width: calc(var(--nav-width) + 306px);
+  }
+  .res-justify-center{
+    justify-content: center;
   }
 }
 @media screen and (min-width: 768px) {
@@ -170,5 +173,8 @@
   }
   .m-user_name{
     display: none;
+  }
+  .alert.show{
+    width: 100%;
   }
 }

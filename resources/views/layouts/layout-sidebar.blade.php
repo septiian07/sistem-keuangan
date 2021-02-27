@@ -69,7 +69,8 @@
                                                 }else{
                                                     $s= "Rejected";
                                                 }
-                                                $judul  = "Your submission is being ".$s." !";
+                                                $judul  = $data->judul." is being ".$s." !";
+                                                
                                             }
                                             $link = "/report";
                                         }else{
@@ -96,7 +97,7 @@
                                     @if ($jenis == "New Submission")
                                         <i class="fas fa-file-upload"></i>
                                     @elseif($jenis == "Submission Progress")
-                                        <i class="fas fa-file-signature"></i>
+                                        <i class="fas fa-clipboard-check"></i>
                                     @elseif($jenis == "Report")
                                         <i class="fas fa-file-contract"></i>
                                     @elseif($jenis == "Activity")
@@ -111,6 +112,7 @@
                                         </div>
                                     </div>
                                 </a>
+                                <hr class="notif-line">
                             @endforeach
                         </div>
                         @else
@@ -230,6 +232,9 @@
                 
             });
             
+        }
+        function showHint(){
+            document.getElementById('alert-hint').classList.toggle('d-none');
         }
         $(function(){
             $('#bell-notif').click(function(){

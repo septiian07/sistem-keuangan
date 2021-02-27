@@ -55,11 +55,11 @@
 								</div>
 								<div class="form-group">
 									<label class="label">Nama</label>
-									<input type="text" name="nama" value = "{{ $detail->nama }}" class="form-control" placeholder="Enter Name" autocomplete="off" maxlength="50">
+									<input type="text" name="nama" value = "{{ $detail->nama }}" class="form-control" placeholder="Enter Name" autocomplete="off" maxlength="50" >
 								</div>
 								<div class="form-group">
 									<label class="label">Jenis Kelamin</label>
-									<select class="form-control" name="jk">
+									<select class="form-control" name="jk" >
 										<option disabled>-- Select --</option>
 										<option value="Pria" {{ $detail->jk == "Pria"? 'selected' : '' }}>Pria</option>
 										<option value="Wanita" {{ $detail->jk == "Wanita"? 'selected' : '' }}>Wanita</option>

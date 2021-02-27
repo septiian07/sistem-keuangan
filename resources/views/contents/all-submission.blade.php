@@ -21,6 +21,7 @@
 									<th>ID</th>
 									<th>Pengajuan</th>
 									<th>Pengaju</th>
+									<th>Jenis Dana</th>
 									<th>Jumlah</th>
 									<th>Tanggal</th>
 									<th>Action</th>
@@ -40,9 +41,10 @@
 									<td data-priority="2">{{ $dtsub->id_pengajuan }}</td> <!-- PERLU BACKEND -->
 									<td data-priority="3">{{$dtsub->judul}}</td> <!-- PERLU BACKEND -->
 									<td data-priority="4">{{$dtsub->nama}}</td>
-									<td data-priority="5">Rp. {{$jumlah}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="6">{{$date}}</td> <!-- PERLU BACKEND -->
-									<td data-priority="7"><a href="" class="btn btn-primary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
+									<td data-priority="5">{{ $dtsub->id_dana }}</td>
+									<td data-priority="6">Rp. {{$jumlah}}</td> <!-- PERLU BACKEND -->
+									<td data-priority="7">{{$date}}</td> <!-- PERLU BACKEND -->
+									<td data-priority="8"><a href="" class="btn btn-primary detail" data-toggle="modal" data-target="#detail-{{$dtsub->id_pengajuan}}">Give Permission</a></td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -164,7 +166,9 @@
 														<div class="modal-body bottom pt-1 pb-2">
 															<img src="{{ URL::asset("img/avatar/$c->picture") }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 															<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
-															<textarea disabled="" class="form-control" style="font-size: 0.8rem; height: auto;">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+															<div class="alert alert-secondary komentar" style="font-size: 0.8rem" role="alert">
+																<pre>{{ $c->komentar }}</pre>
+															</div> <!-- GET KOMENTAR-->
 														</div>
 													@endforeach
 													

@@ -21,7 +21,7 @@
 								<th data-priority="7">Action</th>
 							</tr>
 						</thead>
-					<tbody id="dataTable">
+					<tbody>
 					@foreach ($report->all() as $r)
 						@php
 							// Memformat tanggal jadi format Hari-Bulan-Tahun
@@ -133,8 +133,26 @@
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
+											<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
+											<div class="alert alert-info row status-hint d-none" id="alert-hint">
+												<div class="col-md-6">
+													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Sekolah
+												</div>
+												<div class="col-md-6">
+													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Keuangan
+												</div>
+												<div class="col-md-6">
+													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Diterima Staf BOS/APBD
+												</div>
+												<div class="col-md-6">
+													<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
+												</div>
+												<div class="col-md-6">
+													<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
+												</div>
+											</div>
 										</div>
-										<div class="modal-body bottom d-flex align-items-center pt-1 pb-2">
+										<div class="modal-body bottom d-flex align-items-center res-justify-center pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
 											<form action="/report/report-transaction" method="get" >
@@ -165,7 +183,9 @@
 											<div class="modal-body bottom pt-1 pb-2">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 												<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
-												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+												<div class="alert alert-secondary komentar" style="font-size: 0.8rem" role="alert">
+													<pre>{{ $c->komentar }}</pre>
+												</div>
 											</div>
 										@endforeach
 										
@@ -192,7 +212,7 @@
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body res-text-center">
 					<a href="/export-excel-submission" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
@@ -206,7 +226,7 @@
 								<th data-priority="7">Action</th>
 							</tr>
 						</thead>
-						
+						<tbody>
 						@foreach ($report->all() as $r)
 						@php
 							// Memformat tanggal jadi format Hari-Bulan-Tahun
@@ -226,7 +246,7 @@
 									$status = "Ditolak";
 								}
 						@endphp
-						<tbody>
+						
 							<tr class="text-center">
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $r->judul }}</td> <!-- PERLU BACKEND -->
@@ -245,7 +265,7 @@
 								<td style="color: {{ $status=='Ditolak'? 'var(--red)': 'var(--light-green)' }}">{{ $status }}</td> <!-- PERLU BACKEND -->
 								<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Look Detail</button></td>
 							</tr>
-						</tbody>
+						
 	
 						<!-- Modal -->
 						<div class="modal fade" id="detail{{ $r->id_pengajuan }}">
@@ -317,8 +337,26 @@
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->status }}</mark></span> <!-- CANTUMKAN STATUS -->
+											<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
+											<div class="alert alert-info row status-hint d-none" id="alert-hint">
+												<div class="col-md-6">
+													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Sekolah
+												</div>
+												<div class="col-md-6">
+													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Keuangan
+												</div>
+												<div class="col-md-6">
+													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Diterima Staf BOS/APBD
+												</div>
+												<div class="col-md-6">
+													<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
+												</div>
+												<div class="col-md-6">
+													<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
+												</div>
+											</div>
 										</div>
-										<div class="modal-body bottom d-flex align-items-center pt-1 pb-2">
+										<div class="modal-body bottom d-flex align-items-center res-text-center pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $r->id_transaksi }}</mark></span> <!-- MUNCUL JIKA PENGAJUAN DITERIMA/ACC -->
 											<form action="/report/report-transaction" method="get" >
@@ -350,7 +388,9 @@
 											<div class="modal-body bottom pt-1 pb-2">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 												<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
-												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+												<div class="alert alert-secondary komentar" style="font-size: 0.8rem" role="alert">
+													<pre>{{ $c->komentar }}</pre>
+												</div> <!-- GET KOMENTAR-->
 											</div>
 										@endforeach
 										
@@ -364,7 +404,8 @@
 							</div>
 						</div>
 						@endforeach
-						</table>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -376,7 +417,7 @@
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body res-text-center">
 					<a href="/export-excel-submission" class="btn btn-primary theme-2 mb-3" >Export to Excel <i class="fas fa-file-export ml-2"></i></a>
 					<table class="data-table display nowrap" cellspacing="0" id="dataTable">
 						<thead>
@@ -390,7 +431,7 @@
 								<th data-priority="7">Action</th>
 							</tr>
 						</thead>
-
+						<tbody>
 						@foreach ($report->all() as $r)
 						@php
 							// Memformat tanggal jadi format Hari-Bulan-Tahun
@@ -411,7 +452,7 @@
 								$status = "Ditolak";
 							}
 						@endphp
-						<tbody>
+						
 							<tr class="text-center">
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $r->judul }}</td> <!-- PERLU BACKEND -->
@@ -430,7 +471,7 @@
 								<td style="color: {{ $status=='Ditolak'? 'var(--red)': 'var(--light-green)' }}">{{ $status }}</td> <!-- PERLU BACKEND -->
 								<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#detail{{ $r->id_pengajuan }}">Look Detail</button></td>
 							</tr>
-						</tbody>
+						
 						
 						<div class="modal fade" id="detail{{ $r->id_pengajuan }}">
 							<div class="modal-dialog modal-lg">
@@ -501,6 +542,24 @@
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Status : </span>
 											<span class="in-desc"><mark class="bg-yellow">{{ $status }}</mark></span> <!-- CANTUMKAN STATUS -->
+											<button class="btn btn-sm btn-link" id="status-hint" onclick="showHint()"><i class="fas fa-question"></i></button>
+											<div class="alert alert-info row status-hint d-none" id="alert-hint">
+												<div class="col-md-6">
+													<b>ACC-3</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Sekolah
+												</div>
+												<div class="col-md-6">
+													<b>ACC-2</b> <i class="fas fa-arrow-right"></i> Diterima Kepala Keuangan
+												</div>
+												<div class="col-md-6">
+													<b>ACC-1</b> <i class="fas fa-arrow-right"></i> Diterima Staf BOS/APBD
+												</div>
+												<div class="col-md-6">
+													<b>K</b> <i class="fas fa-arrow-right"></i> Transaksi Keluar
+												</div>
+												<div class="col-md-6">
+													<b>M</b> <i class="fas fa-arrow-right"></i> Transaksi Masuk
+												</div>
+											</div>
 										</div>
 										<div class="modal-body bottom pt-1 pb-2">
 											<span class="in-title">Id Transaksi : </span>
@@ -529,7 +588,9 @@
 											<div class="modal-body bottom pt-1 pb-2">
 												<img src="../img/avatar/{{ $c->picture }}" class="ava" alt="">&nbsp; <!-- GET AVATAR PENGOMENTAR-->
 												<span class="in-title2">{{ $c->nama }}</span> <br><br> <!-- GET NAMA PENGOMENTAR-->
-												<textarea disabled="" class="form-control" style="font-size: 0.8rem">{{ $c->komentar }}</textarea> <!-- GET KOMENTAR-->
+												<div class="alert alert-secondary komentar" style="font-size: 0.8rem" role="alert">
+													<pre>{{ $c->komentar }}</pre>
+												</div> <!-- GET KOMENTAR-->
 											</div>
 										@endforeach
 										
@@ -543,8 +604,8 @@
 							</div>
 						</div>
 						@endforeach
-						
-						</table>
+					</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
